@@ -1,4 +1,4 @@
-import { splitSignature } from '@ethersproject/bytes'
+// import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, Percent, WETH } from '@levinswap/uniswap-sdk'
@@ -114,61 +114,62 @@ export default function RemoveLiquidity({
     }
 
     // try to gather a signature for permission
-    const nonce = await pairContract.nonces(account)
+    // const nonce = await pairContract.nonces(account)
 
-    const EIP712Domain = [
-      { name: 'name', type: 'string' },
-      { name: 'version', type: 'string' },
-      { name: 'chainId', type: 'uint256' },
-      { name: 'verifyingContract', type: 'address' }
-    ]
-    const domain = {
-      name: 'Uniswap V2',
-      version: '1',
-      chainId: chainId,
-      verifyingContract: pair.liquidityToken.address
-    }
-    const Permit = [
-      { name: 'owner', type: 'address' },
-      { name: 'spender', type: 'address' },
-      { name: 'value', type: 'uint256' },
-      { name: 'nonce', type: 'uint256' },
-      { name: 'deadline', type: 'uint256' }
-    ]
-    const message = {
-      owner: account,
-      spender: ROUTER_ADDRESS,
-      value: liquidityAmount.raw.toString(),
-      nonce: nonce.toHexString(),
-      deadline: deadline.toNumber()
-    }
-    const data = JSON.stringify({
-      types: {
-        EIP712Domain,
-        Permit
-      },
-      domain,
-      primaryType: 'Permit',
-      message
-    })
+    // const EIP712Domain = [
+    //   { name: 'name', type: 'string' },
+    //   { name: 'version', type: 'string' },
+    //   { name: 'chainId', type: 'uint256' },
+    //   { name: 'verifyingContract', type: 'address' }
+    // ]
+    // const domain = {
+    //   name: 'Uniswap V2',
+    //   version: '1',
+    //   chainId: chainId,
+    //   verifyingContract: pair.liquidityToken.address
+    // }
+    // const Permit = [
+    //   { name: 'owner', type: 'address' },
+    //   { name: 'spender', type: 'address' },
+    //   { name: 'value', type: 'uint256' },
+    //   { name: 'nonce', type: 'uint256' },
+    //   { name: 'deadline', type: 'uint256' }
+    // ]
+    // const message = {
+    //   owner: account,
+    //   spender: ROUTER_ADDRESS,
+    //   value: liquidityAmount.raw.toString(),
+    //   nonce: nonce.toHexString(),
+    //   deadline: deadline.toNumber()
+    // }
+    // const data = JSON.stringify({
+    //   types: {
+    //     EIP712Domain,
+    //     Permit
+    //   },
+    //   domain,
+    //   primaryType: 'Permit',
+    //   message
+    // })
 
-    library
-      .send('eth_signTypedData_v4', [account, data])
-      .then(splitSignature)
-      .then(signature => {
-        setSignatureData({
-          v: signature.v,
-          r: signature.r,
-          s: signature.s,
-          deadline: deadline.toNumber()
-        })
-      })
-      .catch(error => {
-        // for all errors other than 4001 (EIP-1193 user rejected request), fall back to manual approve
-        if (error?.code !== 4001) {
-          approveCallback()
-        }
-      })
+    // library
+    //   .send('eth_signTypedData_v4', [account, data])
+    //   .then(splitSignature)
+    //   .then(signature => {
+    //     setSignatureData({
+    //       v: signature.v,
+    //       r: signature.r,
+    //       s: signature.s,
+    //       deadline: deadline.toNumber()
+    //     })
+    //   })
+    //   .catch(error => {
+    //     // for all errors other than 4001 (EIP-1193 user rejected request), fall back to manual approve
+    //     if (error?.code !== 4001) {
+    //       approveCallback()
+    //     }
+    //   })
+    approveCallback()
   }
 
   // wrapped onUserInput to clear signatures
