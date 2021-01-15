@@ -6,6 +6,14 @@ export interface Colors {
   white: Color
   black: Color
 
+  // gradients
+  grd1: Color
+  grd2: Color
+  grd3: Color
+  grd4: Color
+  grd5: Color
+  grd6: Color
+
   // text
   text1: Color
   text2: Color

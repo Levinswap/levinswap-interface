@@ -146,7 +146,7 @@ export default function Vote() {
               </RowBetween>
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
-                href="https://uniswap.org/blog/uni"
+                href="https://levinswap.org/blog/uni"
                 target="_blank"
               >
                 <TYPE.white fontSize={14}>Read more about Uniswap governance</TYPE.white>

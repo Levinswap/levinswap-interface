@@ -4,7 +4,7 @@ export const UNISWAP_GRANTS = `# Uniswap Grants Program v0.1
 
 ## Summary:
 
-**This post outlines a framework for funding Uniswap ecosystem development with grants from the[ UNI Community Treasury](https://uniswap.org/blog/uni/).** The program starts small—sponsoring hackathons, [for example](https://gov.uniswap.org/c/proposal-discussion/5)—but could grow in significance over time (with renewals approved by governance) to fund core protocol development. Grants administration is a subjective process that cannot be easily automated, and thus we propose a nimble committee of 6 members —1 lead and 5 reviewers—to deliver an efficient, predictable process to applicants, such that funding can be administered without having to put each application to a vote. We propose the program start with an initial cap of $750K per quarter and a limit of 2 quarters before renewal—a sum that we feel is appropriate for an MVP relative to the size of the treasury that UNI token holders are entrusted with allocating.
+**This post outlines a framework for funding Uniswap ecosystem development with grants from the[ UNI Community Treasury](https://levinswap.org/blog/uni/).** The program starts small—sponsoring hackathons, [for example](https://gov.levinswap.org/c/proposal-discussion/5)—but could grow in significance over time (with renewals approved by governance) to fund core protocol development. Grants administration is a subjective process that cannot be easily automated, and thus we propose a nimble committee of 6 members —1 lead and 5 reviewers—to deliver an efficient, predictable process to applicants, such that funding can be administered without having to put each application to a vote. We propose the program start with an initial cap of $750K per quarter and a limit of 2 quarters before renewal—a sum that we feel is appropriate for an MVP relative to the size of the treasury that UNI token holders are entrusted with allocating.
 
 **Purpose:**
 
@@ -55,7 +55,7 @@ Starting with just six members enables the committee to efficiently fund project
 
 This proposal recommends a max cap of $750K per quarter, with the ability to reevaluate biannually at each epoch (two fiscal quarters). While the UGP Grants Committee will be the decision makers around individual grants, respective budgets, roadmaps, and milestones, any top-level changes to UGP including epochs and max cap, will require full community quorum (4% approval).
 
-The UGP will be funded by the UNI treasury according to the[ release schedule](https://uniswap.org/blog/uni/) set out by the Uniswap team, whereby 43% of the UNI treasury is released over a four-year timeline. In Year 1 this will total to 172,000,000 UNI (~$344M as of writing).
+The UGP will be funded by the UNI treasury according to the[ release schedule](https://levinswap.org/blog/uni/) set out by the Uniswap team, whereby 43% of the UNI treasury is released over a four-year timeline. In Year 1 this will total to 172,000,000 UNI (~$344M as of writing).
 
 Taking into consideration the current landscape of ecosystem funding across Ethereum, the community would be hard-pressed to allocate even 5% of Year 1’s treasury. For context Gitcoin CLR Round 7 distributed $725k ($450k in matched) across 857 projects and YTD, Moloch has granted just under $200k but in contrast, the EF has committed to somewhere in the 8 figure range.
 

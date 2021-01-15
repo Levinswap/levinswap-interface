@@ -1,4 +1,4 @@
-import { transparentize } from 'polished'
+// import { transparentize } from 'polished'
 import React, { useMemo } from 'react'
 import styled, {
   ThemeProvider as StyledComponentsThemeProvider,
@@ -40,6 +40,14 @@ export function colors(darkMode: boolean): Colors {
     white,
     black,
 
+    // gradient colors
+    grd1: darkMode ? '#394F50' : '#FAF4E5', // lower left
+    grd2: darkMode ? '#E5B900' : '#FAF4E5', // slightly above lower left
+    grd3: darkMode ? '#394F50' : '#EDDBAA', // still lower left
+    grd4: darkMode ? '#394F50' : '#FFFFFF', // middle diagonal
+    grd5: darkMode ? '#394F50' : '#FAF4E5', // upper right diagonal
+    grd6: darkMode ? '#394F50' : '#EDDBAA', // upper right
+
     // text
     text1: darkMode ? '#FFFFFF' : '#000000',
     text2: darkMode ? '#C3C5CB' : '#565A69',
@@ -59,14 +67,14 @@ export function colors(darkMode: boolean): Colors {
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#2172E5' : '#ff007a',
-    primary2: darkMode ? '#3680E7' : '#FF8CC3',
-    primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-    primary4: darkMode ? '#376bad70' : '#F6DDE8',
-    primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+    primary1: darkMode ? '#2172E5' : '#f6a948',
+    primary2: darkMode ? '#3680E7' : '#f6a948',
+    primary3: darkMode ? '#4D8FEA' : '#fdb964',
+    primary4: darkMode ? '#376bad70' : '#fdb964',
+    primary5: darkMode ? '#153d6f70' : '#ffd8a7',
 
     // color text
-    primaryText1: darkMode ? '#6da8ff' : '#ff007a',
+    primaryText1: darkMode ? '#6da8ff' : '#090004',
 
     // secondary colors
     secondary1: darkMode ? '#2172E5' : '#ff007a',
@@ -218,17 +226,18 @@ html {
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
   color: ${({ theme }) => theme.text1};
-  background-color: ${({ theme }) => theme.bg2};
+  background: linear-gradient(60deg, 
+    ${({ theme }) => theme.grd1} 0%, 
+    ${({ theme }) => theme.grd2} 0%, 
+    ${({ theme }) => theme.grd3} 0%,
+    ${({ theme }) => theme.grd4} 0%,
+    ${({ theme }) => theme.grd5} 73%,
+    ${({ theme }) => theme.grd6} 100%);
 }
 
 body {
   min-height: 100vh;
   background-position: 0 -30vh;
   background-repeat: no-repeat;
-  background-image: ${({ theme }) =>
-    `radial-gradient(50% 50% at 50% 50%, ${transparentize(0.9, theme.primary1)} 0%, ${transparentize(
-      1,
-      theme.bg1
-    )} 100%)`};
 }
 `
