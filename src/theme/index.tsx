@@ -41,12 +41,12 @@ export function colors(darkMode: boolean): Colors {
     black,
 
     // gradient colors
-    grd1: darkMode ? '#394F50' : '#FAF4E5', // lower left
-    grd2: darkMode ? '#E5B900' : '#FAF4E5', // slightly above lower left
-    grd3: darkMode ? '#394F50' : '#EDDBAA', // still lower left
-    grd4: darkMode ? '#394F50' : '#FFFFFF', // middle diagonal
-    grd5: darkMode ? '#394F50' : '#FAF4E5', // upper right diagonal
-    grd6: darkMode ? '#394F50' : '#EDDBAA', // upper right
+    grd1: darkMode ? '#2a366f' : '#FAF4E5', // lower left
+    grd2: darkMode ? '#2a366f' : '#FAF4E5', // slightly above lower left
+    grd3: darkMode ? '#2a366f' : '#EDDBAA', // still lower left
+    grd4: darkMode ? '#505985' : '#FFFFFF', // middle diagonal
+    grd5: darkMode ? '#5e6263' : '#FAF4E5', // upper right diagonal
+    grd6: darkMode ? '#505985' : '#EDDBAA', // upper right
 
     // text
     text1: darkMode ? '#FFFFFF' : '#000000',
@@ -74,7 +74,7 @@ export function colors(darkMode: boolean): Colors {
     primary5: darkMode ? '#153d6f70' : '#ffd8a7',
 
     // color text
-    primaryText1: darkMode ? '#6da8ff' : '#090004',
+    primaryText1: darkMode ? '#79C5FA' : '#090004',
 
     // secondary colors
     secondary1: darkMode ? '#2172E5' : '#ff007a',
