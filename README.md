@@ -8,12 +8,9 @@ An open source interface for Uniswap -- a protocol for decentralized exchange of
 
 - Website: [levinswap.org](https://levinswap.org/)
 - Interface: [app.levinswap.org](https://app.levinswap.org)
-- Docs: [levinswap.org/docs/](https://levinswap.org/docs/)
-- Twitter: [@UniswapProtocol](https://twitter.com/UniswapProtocol)
-- Reddit: [/r/Uniswap](https://www.reddit.com/r/Uniswap/)
+- Docs: [levinswap.org/docs/](https://wiki.levinswap.org/levinswap-wiki/)
+- Twitter: [@Levinswap](https://twitter.com/Levinswap)
 - Email: [contact@levinswap.org](mailto:contact@levinswap.org)
-- Discord: [Uniswap](https://discord.gg/Y7TF6QA)
-- Whitepaper: [Link](https://hackmd.io/C-DvwDSfSxuh-Gd4WKE_ig)
 
 ## Accessing the Uniswap Interface
 

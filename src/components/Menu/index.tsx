@@ -109,7 +109,7 @@ export default function Menu() {
             <Info size={14} />
             About
           </MenuItem>
-          <MenuItem id="link" href="https://levinswap.org/docs/v2">
+          <MenuItem id="link" href="https://wiki.levinswap.org/levinswap-wiki/">
             <BookOpen size={14} />
             Docs
           </MenuItem>

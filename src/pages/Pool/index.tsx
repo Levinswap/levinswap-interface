@@ -143,7 +143,7 @@ export default function Pool() {
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
                 target="_blank"
-                href="https://levinswap.org/docs/v2/core-concepts/pools/"
+                href="https://wiki.levinswap.org/levinswap-wiki/products/exchange/for-liquidity-providers"
               >
                 <TYPE.white fontSize={14}>Read more about providing liquidity</TYPE.white>
               </ExternalLink>
