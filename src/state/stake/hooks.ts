@@ -135,7 +135,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           rewardRateState.error ||
           periodFinishState.error
         ) {
-          console.error('Failed to load staking rewards info')
+          // console.error('Failed to load staking rewards info')
           return memo
         }
 

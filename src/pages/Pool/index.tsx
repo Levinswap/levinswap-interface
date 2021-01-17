@@ -1,10 +1,10 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Pair /*, JSBI */ } from '@levinswap/uniswap-sdk'
+import { Pair, JSBI } from '@levinswap/uniswap-sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 
-// import FullPositionCard from '../../components/PositionCard'
+import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { StyledInternalLink, ExternalLink, TYPE, HideSmall } from '../../theme'
@@ -19,8 +19,8 @@ import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
-// import { useStakingInfo } from '../../state/stake/hooks'
-// import { BIG_INT_ZERO } from '../../constants'
+import { useStakingInfo } from '../../state/stake/hooks'
+import { BIG_INT_ZERO } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -110,18 +110,18 @@ export default function Pool() {
   const hasV1Liquidity = useUserHasLiquidityInAllTokens()
 
   // show liquidity even if its deposited in rewards contract
-  // const stakingInfo = useStakingInfo()
-  // const stakingInfosWithBalance = stakingInfo?.filter(pool => JSBI.greaterThan(pool.stakedAmount.raw, BIG_INT_ZERO))
-  // const stakingPairs = usePairs(stakingInfosWithBalance?.map(stakingInfo => stakingInfo.tokens))
+  const stakingInfo = useStakingInfo()
+  const stakingInfosWithBalance = stakingInfo?.filter(pool => JSBI.greaterThan(pool.stakedAmount.raw, BIG_INT_ZERO))
+  const stakingPairs = usePairs(stakingInfosWithBalance?.map(stakingInfo => stakingInfo.tokens))
 
   // remove any pairs that also are included in pairs with stake in mining pool
-  // const v2PairsWithoutStakedAmount = allV2PairsWithLiquidity.filter(v2Pair => {
-  //   return (
-  //     stakingPairs
-  //       ?.map(stakingPair => stakingPair[1])
-  //       .filter(stakingPair => stakingPair?.liquidityToken.address === v2Pair.liquidityToken.address).length === 0
-  //   )
-  // })
+  const v2PairsWithoutStakedAmount = allV2PairsWithLiquidity.filter(v2Pair => {
+    return (
+      stakingPairs
+        ?.map(stakingPair => stakingPair[1])
+        .filter(stakingPair => stakingPair?.liquidityToken.address === v2Pair.liquidityToken.address).length === 0
+    )
+  })
 
   return (
     <>
@@ -143,7 +143,7 @@ export default function Pool() {
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
                 target="_blank"
-                href="https://wiki.levinswap.org/levinswap-wiki/products/exchange/for-liquidity-providers"
+                href="https://uniswap.org/docs/v2/core-concepts/pools/"
               >
                 <TYPE.white fontSize={14}>Read more about providing liquidity</TYPE.white>
               </ExternalLink>
@@ -165,7 +165,13 @@ export default function Pool() {
                 <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
                   Create a pair
                 </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 8px" to="/add/ETH">
+                <ResponsiveButtonPrimary
+                  id="join-pool-button"
+                  as={Link}
+                  padding="6px 8px"
+                  borderRadius="12px"
+                  to="/add/ETH"
+                >
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity
                   </Text>
@@ -185,20 +191,12 @@ export default function Pool() {
                   <Dots>Loading</Dots>
                 </TYPE.body>
               </EmptyProposals>
-            ) : allV2PairsWithLiquidity?.length > 0 || false ? (
+            ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
-                <ButtonSecondary>
-                  <RowBetween>
-                    <ExternalLink href={'https://info.levinswap.org/account/' + account}>
-                      Account analytics and accrued fees
-                    </ExternalLink>
-                    <span> ↗</span>
-                  </RowBetween>
-                </ButtonSecondary>
-                {/* {v2PairsWithoutStakedAmount.map(v2Pair => (
+                {v2PairsWithoutStakedAmount.map(v2Pair => (
                   <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
-                ))} */}
-                {/* {stakingPairs.map(
+                ))}
+                {stakingPairs.map(
                   (stakingPair, i) =>
                     stakingPair[1] && ( // skip pairs that arent loaded
                       <FullPositionCard
@@ -207,7 +205,7 @@ export default function Pool() {
                         stakedBalance={stakingInfosWithBalance[i].stakedAmount}
                       />
                     )
-                )} */}
+                )}
               </>
             ) : (
               <EmptyProposals>
