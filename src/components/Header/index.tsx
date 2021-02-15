@@ -30,7 +30,7 @@ import ClaimModal from '../claim/ClaimModal'
 import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
 // import usePrevious from '../../hooks/usePrevious'
-import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
+import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -130,7 +130,7 @@ const Ramp = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #FFD8A7;
+  background-color: #ffd8a7;
   padding: 10px 15px 10px 15px;
   border-radius: 12px;
   white-space: nowrap;
@@ -243,7 +243,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
-}) <{ isActive?: boolean }>`
+})<{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
@@ -294,8 +294,8 @@ export default function Header() {
       hostApiKey: '',
       variant: 'auto'
     })
-      .on('*', (event) => console.log(event))
-      .show();
+      .on('*', event => console.log(event))
+      .show()
   }
 
   // const toggleClaimModal = useToggleSelfClaimModal()
@@ -359,7 +359,9 @@ export default function Header() {
               <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
             )}
           </HideSmall>
-          <Ramp id={'ramp_btn'} onClick={startRamp}>Buy xDai</Ramp>
+          <Ramp id={'ramp_btn'} onClick={startRamp}>
+            Buy xDai
+          </Ramp>
           {/* {availableClaim && !showClaimPopup && (
             <UNIWrapper onClick={toggleClaimModal}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
