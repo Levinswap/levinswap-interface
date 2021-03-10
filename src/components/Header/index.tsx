@@ -135,7 +135,7 @@ const Ramp = styled.div`
   background-color: ${({ theme }) => theme.yellow1};
   color: ${({ theme }) => theme.white};
   padding: 10px 15px 10px 15px;
-  border-radius: 5px;  
+  border-radius: 5px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -247,7 +247,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
-}) <{ isActive?: boolean }>`
+})<{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;

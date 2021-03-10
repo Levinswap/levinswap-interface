@@ -5,11 +5,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
-import {
-  useExpertModeManager,
-  useUserTransactionTTL,
-  useUserSlippageTolerance
-} from '../../state/user/hooks'
+import { useExpertModeManager, useUserTransactionTTL, useUserSlippageTolerance } from '../../state/user/hooks'
 import { TYPE } from '../../theme'
 import { ButtonError } from '../Button'
 import { AutoColumn } from '../Column'
@@ -170,9 +166,7 @@ export default function SettingsTab() {
         </ModalContentWrapper>
       </Modal>
       <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <StyledSettingsText>
-          Settings
-        </StyledSettingsText>
+        <StyledSettingsText>Settings</StyledSettingsText>
         {expertMode ? (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
@@ -209,13 +203,13 @@ export default function SettingsTab() {
                 toggle={
                   expertMode
                     ? () => {
-                      toggleExpertMode()
-                      setShowConfirmation(false)
-                    }
+                        toggleExpertMode()
+                        setShowConfirmation(false)
+                      }
                     : () => {
-                      toggle()
-                      setShowConfirmation(true)
-                    }
+                        toggle()
+                        setShowConfirmation(true)
+                      }
                 }
               />
             </RowBetween>

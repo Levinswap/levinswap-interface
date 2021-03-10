@@ -56,14 +56,13 @@ const StyledArrowLeft = styled(ArrowLeft)`
 `
 
 const SwapMenuStyled = styled.div`
-  
   padding: 0px 15px 10px 15px;
   font-weight: 500;
 `
 
 const SwapPool = styled.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 `
 
 const ResponsiveButtonPrimary = styled(ButtonPrimary)`
@@ -119,22 +118,17 @@ export function FindPoolTabs() {
 export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating: boolean }) {
   const { t } = useTranslation()
   return (
-    < Tabs >
+    <Tabs>
       <RowBetween>
         <SwapMenuStyled>
           <SwapPool>
             <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
               {t('swap')}
             </StyledNavLink>
-            <ResponsiveButtonPrimary
-              id="join-pool-button"
-              as={Link}
-              borderRadius="5px"
-              to="/add/ETH"
-            >
+            <ResponsiveButtonPrimary id="join-pool-button" as={Link} borderRadius="5px" to="/add/ETH">
               <Text fontWeight={500} fontSize={16}>
                 + Liquidity
-                    </Text>
+              </Text>
             </ResponsiveButtonPrimary>
           </SwapPool>
         </SwapMenuStyled>
@@ -146,6 +140,6 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
           }
         />
       </RowBetween>
-    </Tabs >
+    </Tabs>
   )
 }

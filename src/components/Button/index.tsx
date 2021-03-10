@@ -6,7 +6,7 @@ import { RowBetween } from '../Row'
 import { ChevronDown } from 'react-feather'
 import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
 
-const Base = styled(RebassButton) <{
+const Base = styled(RebassButton)<{
   padding?: string
   width?: string
   borderRadius?: string
