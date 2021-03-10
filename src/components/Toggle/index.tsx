@@ -1,39 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ToggleElement = styled.span<{ isActive?: boolean; isOnSwitch?: boolean }>`
-  padding: 0.25rem 0.5rem;
-  border-radius: 14px;
-  background: ${({ theme, isActive, isOnSwitch }) => (isActive ? (isOnSwitch ? theme.primary1 : theme.text4) : 'none')};
-  color: ${({ theme, isActive, isOnSwitch }) => (isActive ? (isOnSwitch ? theme.white : theme.text2) : theme.text3)};
-  font-size: 1rem;
-  font-weight: 400;
-
-  padding: 0.35rem 0.6rem;
-  border-radius: 12px;
-  background: ${({ theme, isActive, isOnSwitch }) => (isActive ? (isOnSwitch ? theme.primary1 : theme.text4) : 'none')};
-  color: ${({ theme, isActive, isOnSwitch }) => (isActive ? (isOnSwitch ? theme.white : theme.text2) : theme.text2)};
-  font-size: 1rem;
-  font-weight: ${({ isOnSwitch }) => (isOnSwitch ? '500' : '400')};
-  :hover {
-    user-select: ${({ isOnSwitch }) => (isOnSwitch ? 'none' : 'initial')};
-    background: ${({ theme, isActive, isOnSwitch }) =>
-      isActive ? (isOnSwitch ? theme.primary1 : theme.text3) : 'none'};
-    color: ${({ theme, isActive, isOnSwitch }) => (isActive ? (isOnSwitch ? theme.white : theme.text2) : theme.text3)};
-  }
-`
 
 const StyledToggle = styled.button<{ isActive?: boolean; activeElement?: boolean }>`
-  border-radius: 12px;
+
+  width: 100%;
+  height: 100%;
   border: none;
-  /* border: 1px solid ${({ theme, isActive }) => (isActive ? theme.primary5 : theme.text4)}; */
-  background: ${({ theme }) => theme.bg3};
-  display: flex;
-  width: fit-content;
-  cursor: pointer;
-  outline: none;
+  background-color: transparent;
+  margin: 0px 10px;
   padding: 0;
-  /* background-color: transparent; */
+  background-color: ${({ theme }) => theme.bg3};
+
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+
+
+  :hover,
+  :focus {
+    cursor: pointer;
+    outline: none;
+    background-color: ${({ theme }) => theme.bg4};
+  }
+
+  svg {
+    margin-top: 3px;
+  }
 `
 
 export interface ToggleProps {
@@ -45,12 +37,7 @@ export interface ToggleProps {
 export default function Toggle({ id, isActive, toggle }: ToggleProps) {
   return (
     <StyledToggle id={id} isActive={isActive} onClick={toggle}>
-      <ToggleElement isActive={isActive} isOnSwitch={true}>
-        On
-      </ToggleElement>
-      <ToggleElement isActive={!isActive} isOnSwitch={false}>
-        Off
-      </ToggleElement>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
     </StyledToggle>
   )
 }

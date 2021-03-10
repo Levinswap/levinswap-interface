@@ -7,6 +7,9 @@ import { NavLink, Link as HistoryLink } from 'react-router-dom'
 import { ArrowLeft } from 'react-feather'
 import { RowBetween } from '../Row'
 import QuestionHelper from '../QuestionHelper'
+import { Text } from 'rebass'
+import { ButtonPrimary } from '../../components/Button'
+import { Link } from 'react-router-dom'
 
 const Tabs = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -29,10 +32,10 @@ const StyledNavLink = styled(NavLink).attrs({
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text3};
-  font-size: 20px;
+  font-size: 16px;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius: 5px;
     font-weight: 500;
     color: ${({ theme }) => theme.text1};
   }
@@ -50,6 +53,39 @@ const ActiveText = styled.div`
 
 const StyledArrowLeft = styled(ArrowLeft)`
   color: ${({ theme }) => theme.text1};
+`
+
+const SwapMenuStyled = styled.div`
+  
+  padding: 0px 15px 10px 15px;
+  font-weight: 500;
+`
+
+const SwapPool = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+const ResponsiveButtonPrimary = styled(ButtonPrimary)`
+  width: fit-content;
+  border-radius: 5px:
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 48%;
+  `};
+  margin-left: 15px;
+  background: white;
+  color: ${({ theme }) => theme.text1};
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.85;
+  transition: 0.3s ease;
+
+  hover {
+    opacity: 1;
+    color: ${({ theme }) => theme.text1};
+    background-color: white;
+
+  }
 `
 
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
@@ -81,13 +117,27 @@ export function FindPoolTabs() {
 }
 
 export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating: boolean }) {
+  const { t } = useTranslation()
   return (
-    <Tabs>
-      <RowBetween style={{ padding: '1rem' }}>
-        <HistoryLink to="/pool">
-          <StyledArrowLeft />
-        </HistoryLink>
-        <ActiveText>{creating ? 'Create a pair' : adding ? 'Add Liquidity' : 'Remove Liquidity'}</ActiveText>
+    < Tabs >
+      <RowBetween>
+        <SwapMenuStyled>
+          <SwapPool>
+            <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
+              {t('swap')}
+            </StyledNavLink>
+            <ResponsiveButtonPrimary
+              id="join-pool-button"
+              as={Link}
+              borderRadius="5px"
+              to="/add/ETH"
+            >
+              <Text fontWeight={500} fontSize={16}>
+                + Liquidity
+                    </Text>
+            </ResponsiveButtonPrimary>
+          </SwapPool>
+        </SwapMenuStyled>
         <QuestionHelper
           text={
             adding
@@ -96,6 +146,6 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
           }
         />
       </RowBetween>
-    </Tabs>
+    </Tabs >
   )
 }

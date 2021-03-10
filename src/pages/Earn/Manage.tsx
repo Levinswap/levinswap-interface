@@ -35,7 +35,7 @@ const PageWrapper = styled(AutoColumn)`
   width: 100%;
 `
 
-const PositionInfo = styled(AutoColumn)<{ dim: any }>`
+const PositionInfo = styled(AutoColumn) <{ dim: any }>`
   position: relative;
   max-width: 640px;
   width: 100%;
@@ -43,12 +43,12 @@ const PositionInfo = styled(AutoColumn)<{ dim: any }>`
 `
 
 const BottomSection = styled(AutoColumn)`
-  border-radius: 12px;
+  border-radius: 5px;
   width: 100%;
   position: relative;
 `
 
-const StyledDataCard = styled(DataCard)<{ bgColor?: any; showBackground?: any }>`
+const StyledDataCard = styled(DataCard) <{ bgColor?: any; showBackground?: any }>`
   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #1e1a31 0%, #3d51a5 100%);
   z-index: 2;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -56,7 +56,7 @@ const StyledDataCard = styled(DataCard)<{ bgColor?: any; showBackground?: any }>
     `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%,  ${showBackground ? theme.black : theme.bg5} 100%) `};
 `
 
-const StyledBottomCard = styled(DataCard)<{ dim: any }>`
+const StyledBottomCard = styled(DataCard) <{ dim: any }>`
   background: ${({ theme }) => theme.bg3};
   opacity: ${({ dim }) => (dim ? 0.4 : 1)};
   margin-top: -40px;
@@ -179,8 +179,8 @@ export default function Manage({
             <TYPE.body fontSize={24} fontWeight={500}>
               {stakingInfo?.active
                 ? stakingInfo?.totalRewardRate
-                    ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                    ?.toFixed(0, { groupSeparator: ',' }) ?? '-'
+                  ?.multiply(BIG_INT_SECONDS_IN_WEEK)
+                  ?.toFixed(0, { groupSeparator: ',' }) ?? '-'
                 : '0'}
               {' UNI / week'}
             </TYPE.body>
@@ -297,8 +297,8 @@ export default function Manage({
                   </span>
                   {stakingInfo?.active
                     ? stakingInfo?.rewardRate
-                        ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                        ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'
+                      ?.multiply(BIG_INT_SECONDS_IN_WEEK)
+                      ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'
                     : '0'}
                   {' UNI / week'}
                 </TYPE.black>

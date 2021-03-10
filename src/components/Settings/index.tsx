@@ -1,12 +1,11 @@
 import React, { useContext, useRef, useState } from 'react'
-import { Settings, X } from 'react-feather'
+import { X } from 'react-feather'
 import { Text } from 'rebass'
 import styled, { ThemeContext } from 'styled-components'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 import {
-  useDarkModeManager,
   useExpertModeManager,
   useUserTransactionTTL,
   useUserSlippageTolerance
@@ -20,15 +19,6 @@ import { RowBetween, RowFixed } from '../Row'
 import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
-const StyledMenuIcon = styled(Settings)`
-  height: 20px;
-  width: 20px;
-
-  > * {
-    stroke: ${({ theme }) => theme.text1};
-  }
-`
-
 const StyledCloseIcon = styled(X)`
   height: 20px;
   width: 20px;
@@ -41,29 +31,32 @@ const StyledCloseIcon = styled(X)`
   }
 `
 
+const StyledSettingsText = styled.div`
+  text-align: center;
+  font-size: 16px;
+`
+
 const StyledMenuButton = styled.button`
   position: relative;
-  width: 100%;
   height: 100%;
   border: none;
   background-color: transparent;
-  margin: 0;
-  padding: 0;
   height: 35px;
-  background-color: ${({ theme }) => theme.bg3};
+  opacity: 0.75;
+  text-align: center;
 
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
+  transition: 0.3s ease;
 
   :hover,
   :focus {
     cursor: pointer;
     outline: none;
-    background-color: ${({ theme }) => theme.bg4};
+    opacity: 1;
   }
 
   svg {
-    margin-top: 2px;
+    margin-top: 5px;
   }
 `
 const EmojiWrapper = styled.div`
@@ -74,27 +67,23 @@ const EmojiWrapper = styled.div`
 `
 
 const StyledMenu = styled.div`
-  margin-left: 0.5rem;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  border: none;
-  text-align: left;
+  border: solid 1px #f8f8fb;
 `
 
 const MenuFlyout = styled.span`
-  min-width: 20.125rem;
+  min-width: 23.125rem;
   background-color: ${({ theme }) => theme.bg2};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
-  border-radius: 12px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
   position: absolute;
-  top: 4rem;
-  right: 0rem;
+  top: 2.75rem;
   z-index: 100;
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -134,8 +123,6 @@ export default function SettingsTab() {
   const [ttl, setTtl] = useUserTransactionTTL()
 
   const [expertMode, toggleExpertMode] = useExpertModeManager()
-
-  const [darkMode, toggleDarkMode] = useDarkModeManager()
 
   // show confirmation view before turning on
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -183,7 +170,9 @@ export default function SettingsTab() {
         </ModalContentWrapper>
       </Modal>
       <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <StyledMenuIcon />
+        <StyledSettingsText>
+          Settings
+        </StyledSettingsText>
         {expertMode ? (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
@@ -220,23 +209,15 @@ export default function SettingsTab() {
                 toggle={
                   expertMode
                     ? () => {
-                        toggleExpertMode()
-                        setShowConfirmation(false)
-                      }
+                      toggleExpertMode()
+                      setShowConfirmation(false)
+                    }
                     : () => {
-                        toggle()
-                        setShowConfirmation(true)
-                      }
+                      toggle()
+                      setShowConfirmation(true)
+                    }
                 }
               />
-            </RowBetween>
-            <RowBetween>
-              <RowFixed>
-                <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
-                  Toggle Dark Mode
-                </TYPE.black>
-              </RowFixed>
-              <Toggle isActive={darkMode} toggle={toggleDarkMode} />
             </RowBetween>
           </AutoColumn>
         </MenuFlyout>

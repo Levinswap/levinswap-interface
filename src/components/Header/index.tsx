@@ -17,7 +17,6 @@ import { useETHBalances /*, useAggregateUniBalance */ } from '../../state/wallet
 import { /* TYPE, */ ExternalLink } from '../../theme'
 
 import { YellowCard } from '../Card'
-import Settings from '../Settings'
 import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
@@ -31,6 +30,9 @@ import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
 // import usePrevious from '../../hooks/usePrevious'
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk'
+
+import { RowBetween } from '../Row'
+import Toggle from '../Toggle'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -76,7 +78,7 @@ const HeaderControls = styled.div`
     width: 100%;
     z-index: 99;
     height: 72px;
-    border-radius: 12px 12px 0 0;
+    border-radius: 5px 12px 0 0;
     background-color: ${({ theme }) => theme.bg1};
   `};
 `
@@ -116,7 +118,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
-  border-radius: 12px;
+  border-radius: 5px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -133,7 +135,7 @@ const Ramp = styled.div`
   background-color: ${({ theme }) => theme.yellow1};
   color: ${({ theme }) => theme.white};
   padding: 10px 15px 10px 15px;
-  border-radius: 12px;
+  border-radius: 5px;  
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -174,7 +176,7 @@ const HideSmall = styled.span`
 `
 
 const NetworkCard = styled(YellowCard)`
-  border-radius: 12px;
+  border-radius: 25px;
   padding: 8px 12px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     margin: 0;
@@ -232,7 +234,7 @@ const StyledNavLink = styled(NavLink).attrs({
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius: 25px;
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
@@ -245,7 +247,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
-})<{ isActive?: boolean }>`
+}) <{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
@@ -259,7 +261,7 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius: 25px;
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
@@ -313,7 +315,7 @@ export default function Header() {
 
   // const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
   // const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
-
+  const [darkMode, toggleDarkMode] = useDarkModeManager()
   return (
     <HeaderFrame>
       <ClaimModal />
@@ -327,9 +329,6 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
-          <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            {t('swap')}
-          </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -341,7 +340,7 @@ export default function Header() {
               pathname.startsWith('/find')
             }
           >
-            {t('pool')}
+            {t('Pool')}
           </StyledNavLink>
           {/* <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             UNI
@@ -350,7 +349,7 @@ export default function Header() {
             Vote
           </StyledNavLink> */}
           <StyledExternalLink id={`stake-nav-link`} href={'https://info.levinswap.org'}>
-            Charts <span style={{ fontSize: '11px' }}>↗</span>
+            Analytics <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>
@@ -409,8 +408,10 @@ export default function Header() {
             <Web3Status />
           </AccountElement>
         </HeaderElement>
+        <RowBetween>
+          <Toggle isActive={darkMode} toggle={toggleDarkMode} />
+        </RowBetween>
         <HeaderElementWrap>
-          <Settings />
           <Menu />
         </HeaderElementWrap>
       </HeaderControls>
